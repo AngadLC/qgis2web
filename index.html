@@ -50,7 +50,7 @@
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var autolinker = new Autolinker({truncate: {length: 30, location: 'smart'}});
-        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        L.control.locate({locateOptions: {maxZoom: 28,drawMarker:true}}).addTo(map);
         var measureControl = new L.Control.Measure({
             position: 'topleft',
             primaryLengthUnit: 'meters',
@@ -78,7 +78,7 @@
             maxNativeZoom: 19
         });
         layer_OpenStreetMap_0;
-        map.addLayer(layer_OpenStreetMap_0);
+        var basemap = (layer_OpenStreetMap_0);
         function pop_npl_admbnda_adm0_nd_20190430_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -157,7 +157,7 @@
             style: style_npl_admbnda_adm0_nd_20190430_1_0,
         });
         bounds_group.addLayer(layer_npl_admbnda_adm0_nd_20190430_1);
-        map.addLayer(layer_npl_admbnda_adm0_nd_20190430_1);
+        var admin_1 = (layer_npl_admbnda_adm0_nd_20190430_1);
         function pop_npl_admbnda_adm1_nd_20190430_2(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -242,7 +242,7 @@
             style: style_npl_admbnda_adm1_nd_20190430_2_0,
         });
         bounds_group.addLayer(layer_npl_admbnda_adm1_nd_20190430_2);
-        map.addLayer(layer_npl_admbnda_adm1_nd_20190430_2);
+        var admin_2 = (layer_npl_admbnda_adm1_nd_20190430_2);
         function pop_npl_admbnda_adm2_nd_20190430_3(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -339,7 +339,7 @@
             style: style_npl_admbnda_adm2_nd_20190430_3_0,
         });
         bounds_group.addLayer(layer_npl_admbnda_adm2_nd_20190430_3);
-        map.addLayer(layer_npl_admbnda_adm2_nd_20190430_3);
+        var admin_3 = (layer_npl_admbnda_adm2_nd_20190430_3);
             var title = new L.Control();
             title.onAdd = function (map) {
                 this._div = L.DomUtil.create('div', 'info');
@@ -368,6 +368,20 @@
             propertyName: 'DIST_EN'}));
         document.getElementsByClassName('search-button')[0].className +=
          ' fa fa-binoculars';
+         var baseMaps = {
+            
+            "osmmap": basemap
+        };
+
+        var overlayMaps = {
+            "Country": admin_1,
+            "Province": admin_2,
+            "local level": admin_3
+
+        };
+        //add the layer control option
+        
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
         </script>
     </body>
 </html>
